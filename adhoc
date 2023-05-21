@@ -1,0 +1,4 @@
+mv ~/.bashrc ~/.bashrc.bk
+ln -s ~/dotfiles/bash/.bashrc ~/.bashrc
+
+ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
