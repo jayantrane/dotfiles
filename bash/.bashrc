@@ -7,6 +7,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+alias grep='grep --color'
+alias ll='ls -ltra'
+alias ls='ls --classify --color'
+
 export HISTSIZE=10000
 export HISTFILESIZE=120000
 
