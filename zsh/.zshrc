@@ -1,3 +1,5 @@
+source ~/.zshrc.local
+
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE

@@ -1,4 +1,6 @@
 mv ~/.bashrc ~/.bashrc.bk
 ln -s ~/dotfiles/bash/.bashrc ~/.bashrc
-
+mv ~/.zshrc ~/.zshrc.bk
 ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+mv ~/.tmux.conf ~/.tmux.conf.bk
+ln -s ~/dotfiles/tumx/.tmux.conf ~/.tmux.conf
