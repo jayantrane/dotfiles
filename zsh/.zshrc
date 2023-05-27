@@ -1,4 +1,6 @@
-source ~/.zshrc.local
+if [ -f ~/.zshrc.local ]
+    source ~/.zshrc.local
+fi
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000

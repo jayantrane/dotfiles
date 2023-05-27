@@ -1,6 +1,11 @@
-mv ~/.bashrc ~/.bashrc.bk
+mv ~/.bashrc ~/.bashrc.local
 ln -s ~/dotfiles/bash/.bashrc ~/.bashrc
-mv ~/.zshrc ~/.zshrc.bk
+mv ~/.zshrc ~/.zshrc.local
 ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
-mv ~/.tmux.conf ~/.tmux.conf.bk
+mv ~/.tmux.conf ~/.tmux.conf.local
 ln -s ~/dotfiles/tumx/.tmux.conf ~/.tmux.conf
+
+# VS Code paths
+# Windows %APPDATA%\Code\User\settings.json
+# macOS $HOME/Library/Application\ Support/Code/User/settings.json
+# Linux $HOME/.config/Code/User/settings.json

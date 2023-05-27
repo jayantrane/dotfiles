@@ -1,4 +1,6 @@
-source ~/.bashrc.local
+if [ -f ~/.bashrc.local ]
+    source ~/.bashrc.local
+fi
 
 alias 'll=ls -ltra '
 
