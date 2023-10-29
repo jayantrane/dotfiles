@@ -1,8 +1,17 @@
-mv ~/.bashrc ~/.bashrc.local
+#!/bin/bash
+if [[ -f ~/.bashrc ]]; then 
+    mv ~/.bashrc ~/.bashrc.local
+fi
 ln -s ~/dotfiles/bash/.bashrc ~/.bashrc
-mv ~/.zshrc ~/.zshrc.local
+
+if [[ -f ~/.zsh ]]; then
+    mv ~/.zshrc ~/.zshrc.local
+fi
 ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
-mv ~/.tmux.conf ~/.tmux.conf.local
+
+if [[ -f ~/.tmux.conf ]]; then 
+    mv ~/.tmux.conf ~/.tmux.conf.local
+fi
 ln -s ~/dotfiles/tumx/.tmux.conf ~/.tmux.conf
 
 # VS Code paths
