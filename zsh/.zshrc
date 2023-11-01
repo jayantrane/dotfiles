@@ -6,6 +6,6 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 
-if [[-f "~/dotfiles/zsh/aliases.zsh" ]]; then
+if [[ -f "~/dotfiles/zsh/aliases.zsh" ]]; then
     source ~/dotfiles/zsh/aliases.zsh
 fi
