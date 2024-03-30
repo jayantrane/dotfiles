@@ -79,6 +79,7 @@ function parse_git_dirty {
 }
 
 export PS1="\[\e[37m\]\t\[\e[m\] \[\e[32m\]\u\[\e[m\]@\[\e[33;40m\]\h\[\e[m\]:\[\e[32m\]\w\[\e[m\] \[\e[36;40m\]\`parse_git_branch\`\[\e[m\]\[\e[32m\]\\$\[\e[m\]  "
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/jayant/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
