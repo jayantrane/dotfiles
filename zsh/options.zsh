@@ -1,4 +1,5 @@
 # https://zsh.sourceforge.io/Doc/Release/Options.html
+# https://github.com/rothgar/mastering-zsh/blob/master/docs/config/history.md
 
 setopt AUTO_CD                   # If command is the name of a directory, perform the cd command.
 
