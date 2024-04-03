@@ -9,3 +9,7 @@ SAVEHIST=$HISTSIZE
 if [[ -f "~/dotfiles/zsh/aliases.zsh" ]]; then
     source ~/dotfiles/zsh/aliases.zsh
 fi
+
+if [[ -f "~/dotfiles/zsh/options.zsh" ]]; then
+    source ~/dotfiles/zsh/options.zsh
+fi
