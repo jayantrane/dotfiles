@@ -1,6 +1,10 @@
+DOTFILES_DIR=~/dotfiles
+
 if [[ -f "~/.zshrc.local" ]]; then
     source ~/.zshrc.local
 fi
+
+source $DOTFILES_DIR/common/aliases
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000

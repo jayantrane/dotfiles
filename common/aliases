@@ -1,10 +1,16 @@
+# Directory change shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+# Most used commands
 alias grep='grep --color'
 alias ll='ls -ltra'
 alias ls='ls -F --color'
 alias h='history'
 alias vi='vim'
+
+# Process related
+alias psall='ps -auxww '
+alias ppid='ps -o ppid= -p '
