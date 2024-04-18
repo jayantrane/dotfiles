@@ -1,17 +1,10 @@
+DOTFILES_DIR=~/dotfiles
+
 if [[ -f "~/.bashrc.local" ]]; then
     source ~/.bashrc.local
 fi
 
-alias 'll=ls -ltra '
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-
-alias grep='grep --color'
-alias ll='ls -ltra'
-alias ls='ls -F --color'
+source $DOTFILES_DIR/common/aliases
 
 export HISTSIZE=1000000
 export HISTFILESIZE=1200000
@@ -79,19 +72,3 @@ function parse_git_dirty {
 }
 
 export PS1="\[\e[37m\]\t\[\e[m\] \[\e[32m\]\u\[\e[m\]@\[\e[33;40m\]\h\[\e[m\]:\[\e[32m\]\w\[\e[m\] \[\e[36;40m\]\`parse_git_branch\`\[\e[m\]\[\e[32m\]\\$\[\e[m\]  "
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jayant/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jayant/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jayant/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jayant/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
