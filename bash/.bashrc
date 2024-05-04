@@ -1,7 +1,7 @@
-DOTFILES_DIR=~/dotfiles
+source $HOME/dotfiles/common/env
 
-if [[ -f "~/.bashrc.local" ]]; then
-    source ~/.bashrc.local
+if [[ -f "$DOTFILES_DIR/.bashrc.local" ]]; then
+    source $DOTFILES_DIR/.bashrc.local
 fi
 
 source $DOTFILES_DIR/common/aliases

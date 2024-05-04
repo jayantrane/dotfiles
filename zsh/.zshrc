@@ -1,22 +1,16 @@
-DOTFILES_DIR=~/dotfiles
+source $HOME/dotfiles/common/env
 
-if [[ -f "~/.zshrc.local" ]]; then
-    source ~/.zshrc.local
+if [[ -f "$HOME/.zshrc.local" ]]; then
+    source $HOME/.zshrc.local
 fi
 
 source $DOTFILES_DIR/common/aliases
+source $DOTFILES_DIR/zsh/options.zsh
+source $DOTFILES_DIR/zsh/plugins.zsh
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
-
-if [[ -f "~/dotfiles/zsh/aliases.zsh" ]]; then
-    source ~/dotfiles/zsh/aliases.zsh
-fi
-
-if [[ -f "~/dotfiles/zsh/options.zsh" ]]; then
-    source ~/dotfiles/zsh/options.zsh
-fi
 
 # Prompt for now
 autoload -Uz vcs_info
@@ -26,3 +20,7 @@ zstyle ':vcs_info:git:*' formats '%b '
 
 setopt PROMPT_SUBST
 PROMPT='%F{green}%*%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+
+# Auto completion
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=green,bold,underline"
+bindkey '^ ' autosuggest-accept

@@ -23,5 +23,6 @@ sudo apt install build-essential
 sudo apt install traceroute
 sudo apt install whois
 sudo apt install vlc
+sudo apt install zsh-antigen
 # tmux stuff
 sudo apt install fzf
