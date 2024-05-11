@@ -1,1 +1,3 @@
 DOTFILES_DIR=~/dotfiles
+LANG="en_IN.utf8"
+export LANG
