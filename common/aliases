@@ -18,3 +18,5 @@ alias ppid='ps -o ppid= -p '
 # Git related
 alias gs='git status'
 alias gl='git log'
+alias gcn='git checkout -b'
+alias ga='git add'
