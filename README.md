@@ -1,2 +1,2 @@
 # dotfiles
-Jayant's configs
+Jayant's configs for environment setup.
