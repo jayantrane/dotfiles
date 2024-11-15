@@ -18,8 +18,18 @@ alias ppid='ps -o ppid= -p '
 # Git related
 alias gs='git status'
 alias gl='git log'
-alias gc='git checkout'
+alias co='git checkout'
 alias ga='git add'
-alias gp='git pull'
+alias gaa='git add -A'
+alias gc='git commit'
 alias gcm='git commit -m'
+
+# Git Analysis
+alias gd='git diff'
+
+# Git modifications
+alias greb='git rebase -i'
+
+# Github
+alias gp='git pull'
 alias gpu='git push'
