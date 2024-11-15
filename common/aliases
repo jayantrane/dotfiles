@@ -21,6 +21,7 @@ alias gl='git log'
 alias co='git checkout'
 alias ga='git add'
 alias gaa='git add -A'
+alias gau='git add -u'
 alias gc='git commit'
 alias gcm='git commit -m'
 
