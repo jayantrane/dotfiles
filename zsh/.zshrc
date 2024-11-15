@@ -34,3 +34,21 @@ bindkey '^ ' autosuggest-accept  # CTRL + Space to accept the suggestion
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add prettified git logs
+
+HASH="%C(always,yellow)%h%C(always,reset)"
+RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
+AUTHOR="%C(always,bold blue)%an%C(always,reset)"
+REFS="%C(always,red)%d%C(always,reset)"
+SUBJECT="%s"
+
+FORMAT="$HASH $RELATIVE_TIME{$AUTHOR{$REFS $SUBJECT"
+
+pretty_git_log() {
+git log --graph --pretty="tformat:$FORMAT" $* |
+column -t -s '{' |
+less -XRS --quit-if-one-screen
+}
+
+alias gll='pretty_git_log'
