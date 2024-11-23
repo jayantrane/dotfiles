@@ -1,5 +1,4 @@
-DOTFILES_DIR=~/dotfiles
+export DOTFILES_DIR=~/dotfiles
 PACKAGE_MANAGER_PREFIX=/usr/share/
 ANTIGEN_DIR=$PACKAGE_MANAGER_PREFIX/zsh-antigen/
-LANG="en_IN.utf8"
-export LANG
+export LANG="en_IN.utf8"
