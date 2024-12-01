@@ -108,8 +108,8 @@ link_folder() {
     find_folder $DOTFILES_DIR $source_folder_name link_folder
     echo "Folder to be linked is $link_folder."
 
-    ln -s $link_folder $destination_folder
-    echo "Folder $destination_folder linked successfully."
+    ln -s $link_folder $absolute_destination_folder
+    echo "Folder $absolute_destination_folder linked successfully."
 }
 
 link_files ".bashrc"
