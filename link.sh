@@ -24,6 +24,22 @@ find_file() {
     eval "$3='$result'"
 }
 
+find_folder() {
+    local search_path=$1
+    local folder_name=$2
+    # Use find command to search for the file recursively
+    local result="$(find "$search_path" -type d -name "$folder_name" -print -quit)"
+    
+    # Check if folder was found.
+    if [ -d "$result" ]; then
+        echo "Folder found at: $result"
+    else
+        echo "Folder not found."
+    fi
+
+    eval "$3='$result'"
+}
+
 
 link_files () {
 
@@ -67,10 +83,28 @@ link_files () {
     echo "File $absolute_file_name linked successfully."
 }
 
+link_folder() {
+    destination_folder=$1
+    source_folder_name=$2
+
+    if [ -L $HOME/$destination_folder ]; then
+        echo "Folder $HOME/$destination_folder is present and is linked."
+        return 0
+    fi
+
+    link_folder=''
+    find_folder $DOTFILES_DIR $source_folder_name link_folder
+    echo "Folder to be linked is $link_folder."
+
+    ln -s $link_folder $destination_folder
+    echo "Folder $destination_folder linked successfully."
+}
+
 link_files ".bashrc"
 link_files ".zshrc"
 link_files ".tmux.conf"
 link_files ".vimrc"
+link_folder ".config/nvim" "nvim"
 
 # VS Code paths
 # Windows %APPDATA%\Code\User\settings.json
