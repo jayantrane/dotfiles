@@ -1,5 +1,16 @@
 #!/bin/bash
 
+#===================================================================
+# For verification, print the environment variables that would be
+# needed for this to function correctly.
+#===================================================================
+
+echo "Verify and proceed if the environment variables are correctly set."
+echo "HOME is set to $HOME"
+echo "DOTFILES_DIR is set to $DOTFILES_DIR"
+printf "%s " "Press enter to continue"
+read ans
+
 # DOFILES_DIR should be set in environment before is this to be run.
 find_file() {
     local search_path=$1
@@ -85,10 +96,11 @@ link_files () {
 
 link_folder() {
     destination_folder=$1
+    absolute_destination_folder="$HOME/$destination_folder"
     source_folder_name=$2
 
-    if [ -L $HOME/$destination_folder ]; then
-        echo "Folder $HOME/$destination_folder is present and is linked."
+    if [ -L $absolute_destination_folder ]; then
+        echo "Folder $absolute_destination_folder is present and is linked."
         return 0
     fi
 
