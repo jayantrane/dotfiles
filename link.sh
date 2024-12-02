@@ -117,6 +117,7 @@ link_files ".zshrc"
 link_files ".tmux.conf"
 link_files ".vimrc"
 link_folder ".config/nvim" "nvim"
+link_folder ".config/kitty" "kitty"
 
 # VS Code paths
 # Windows %APPDATA%\Code\User\settings.json
