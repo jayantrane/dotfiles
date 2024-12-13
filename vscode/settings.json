@@ -1,4 +1,5 @@
 {
     "editor.lineNumbers": "relative",
     "editor.fontSize": 18,
+    "window.zoomsize": 1,
 }
