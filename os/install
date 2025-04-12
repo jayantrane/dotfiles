@@ -32,8 +32,6 @@ sudo apt install zsh
 sudo apt install tmux
 sudo apt install python3-pip
 sudo apt install ubuntu-drivers-common
-sudo apt install ubuntu-drivers-common
-sudo apt install build-essentials
 
 # Nvidea related
 #sudo apt install nvidia-cuda-toolkit

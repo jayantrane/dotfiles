@@ -72,3 +72,4 @@ function parse_git_dirty {
 }
 
 export PS1="\[\e[37m\]\t\[\e[m\] \[\e[32m\]\u\[\e[m\]@\[\e[33;40m\]\h\[\e[m\]:\[\e[32m\]\w\[\e[m\] \[\e[36;40m\]\`parse_git_branch\`\[\e[m\]\[\e[32m\]\\$\[\e[m\]  "
+. "$HOME/.cargo/env"
