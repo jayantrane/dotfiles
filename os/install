@@ -1,10 +1,31 @@
+# First setup
+sudo apt update
+sudo apt upgrade
+
+# Install chrome
+# https://www.google.com/chrome/
+#
+
+# IDE related
+sudo apt install vim
+sudo apt install gcc
+sudo apt install g++
+sudo apt install curl
+sudo apt install zsh
+sudo apt install git
+sudo apt install gh
+
+# GPU stuff
+sudo apt install gcc
+sudo apt install nvidia-cuda-toolkit
+
+
 # Some regular os stuff
 sudo apt install gnome-software
 sudo apt install nodejs
 sudo apt install npm
 sudo apt install net-tools
 sudo apt install curl
-sudo apt install git
 sudo apt install apt-transport-https
 sudo apt install code
 sudo apt install zsh 
@@ -13,16 +34,18 @@ sudo apt install python3-pip
 sudo apt install ubuntu-drivers-common
 sudo apt install ubuntu-drivers-common
 sudo apt install build-essentials
-sudo apt install gcc
+
 # Nvidea related
-sudo apt install nvidia-cuda-toolkit
-sudo apt install pm-utils
-sudo apt install hibernate
-sudo apt install build-essential
+#sudo apt install nvidia-cuda-toolkit
+#sudo apt install pm-utils
+#sudo apt install hibernate
+#sudo apt install build-essential
+
 # Must stuff
 sudo apt install traceroute
 sudo apt install whois
 sudo apt install vlc
 sudo apt install zsh-antigen
+
 # tmux stuff
 sudo apt install fzf
