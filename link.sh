@@ -17,7 +17,7 @@ find_file() {
     local file_name=$2
     
     # Check if search_path is a directory
-    if [ ! -d "$search_path" ]; then
+    if [[ ! -d "$search_path" ]]; then
         echo "Find_file::Error: $search_path is not a directory."
         return 1
     fi
@@ -26,7 +26,7 @@ find_file() {
     local result="$(find "$search_path" -type f -name "$file_name" -print -quit)"
     
     # Check if file was found
-    if [ -n "$result" ]; then
+    if [[ -n "$result" ]]; then
         echo "File found at: $result"
     else
         echo "File not found."
@@ -42,7 +42,7 @@ find_folder() {
     local result="$(find "$search_path" -type d -name "$folder_name" -print -quit)"
     
     # Check if folder was found.
-    if [ -d "$result" ]; then
+    if [[ -d "$result" ]]; then
         echo "Folder found at: $result"
     else
         echo "Folder not found."
@@ -55,15 +55,16 @@ find_folder() {
 link_files () {
 
     file_name=$1
+    search_folder_path=$2
     absolute_file_name="$HOME/$file_name"
     absolute_backup_file_name="$absolute_file_name.local"
 
-    if [ -L $absolute_file_name ]; then
+    if [[ -L $absolute_file_name ]]; then
         echo "File $absolute_file_name is present and is linked."
         return 0
     fi
 
-    if [ -f $absolute_backup_file_name ]; then
+    if [[ -f $absolute_backup_file_name ]]; then
         echo "Backup file $absolute_backup_file_name is present."
 
         diff -q $absolute_file_name $absolute_backup_file_name 
@@ -77,7 +78,7 @@ link_files () {
     fi
 
     # Only backup the original file if it exists.
-    if [ -f $absolute_file_name ]; then
+    if [[ -f $absolute_file_name ]]; then
         echo "Copying current file to backup."
         mv $absolute_file_name $absolute_backup_file_name
 
@@ -123,3 +124,6 @@ link_folder ".config/kitty" "kitty"
 # Windows %APPDATA%\Code\User\settings.json
 # macOS $HOME/Library/Application\ Support/Code/User/settings.json
 # Linux $HOME/.config/Code/User/settings.json
+
+# TODO: Make below work later.
+#link_files ".config/Code/User/settings.json" "Code/User/settings.json"
