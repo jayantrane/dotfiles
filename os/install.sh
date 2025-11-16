@@ -1,51 +1,51 @@
 #!/bin/bash
 # First setup
-sudo apt update
-sudo apt upgrade
+sudo apt -y update
+sudo apt -y upgrade
 
 # Install chrome
 # https://www.google.com/chrome/
 #
 
 # IDE related
-sudo apt install vim
-sudo apt install gcc
-sudo apt install g++
-sudo apt install curl
-sudo apt install zsh
-sudo apt install git
-sudo apt install gh
+sudo apt -y install vim
+sudo apt -y install gcc
+sudo apt -y install g++
+sudo apt -y install curl
+sudo apt -y install zsh
+sudo apt -y install git
+sudo apt -y install gh
 
 # GPU stuff
-#sudo apt install nvidia-cuda-toolkit
+#sudo apt -y install nvidia-cuda-toolkit
 
 
 # Some regular os stuff
-sudo apt install gnome-software
-sudo apt install nodejs
-sudo apt install npm
-sudo apt install net-tools
-sudo apt install apt-transport-https
-sudo apt install code
-sudo apt install tmux
-sudo apt install python3-pip
-sudo apt install ubuntu-drivers-common
+sudo apt -y install gnome-software
+sudo apt -y install nodejs
+sudo apt -y install npm
+sudo apt -y install net-tools
+sudo apt -y install apt-transport-https
+sudo apt -y install code
+sudo apt -y install tmux
+sudo apt -y install python3-pip
+sudo apt -y install ubuntu-drivers-common
 
 # Tools
-sudo apt install unzip
-sudo apt install net-tools
+sudo apt -y install unzip
+sudo apt -y install net-tools
 
 # Nvidea related
-#sudo apt install nvidia-cuda-toolkit
-#sudo apt install pm-utils
-#sudo apt install hibernate
-#sudo apt install build-essential
+#sudo apt -y install nvidia-cuda-toolkit
+#sudo apt -y install pm-utils
+#sudo apt -y install hibernate
+#sudo apt -y install build-essential
 
 # Must stuff
-sudo apt install traceroute
-sudo apt install whois
-sudo apt install vlc
-sudo apt install zsh-antigen
+sudo apt -y install traceroute
+sudo apt -y install whois
+sudo apt -y install vlc
+sudo apt -y install zsh-antigen
 
 # tmux stuff
-sudo apt install fzf
+sudo apt -y install fzf
