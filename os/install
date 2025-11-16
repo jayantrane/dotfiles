@@ -16,8 +16,7 @@ sudo apt install git
 sudo apt install gh
 
 # GPU stuff
-sudo apt install gcc
-sudo apt install nvidia-cuda-toolkit
+#sudo apt install nvidia-cuda-toolkit
 
 
 # Some regular os stuff
@@ -25,13 +24,15 @@ sudo apt install gnome-software
 sudo apt install nodejs
 sudo apt install npm
 sudo apt install net-tools
-sudo apt install curl
 sudo apt install apt-transport-https
 sudo apt install code
-sudo apt install zsh 
 sudo apt install tmux
 sudo apt install python3-pip
 sudo apt install ubuntu-drivers-common
+
+# Tools
+sudo apt install unzip
+sudo apt install net-tools
 
 # Nvidea related
 #sudo apt install nvidia-cuda-toolkit
