@@ -1,3 +1,4 @@
+#!/bin/bash
 # First setup
 sudo apt update
 sudo apt upgrade
