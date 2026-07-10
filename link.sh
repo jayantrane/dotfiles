@@ -1,129 +1,150 @@
 #!/bin/bash
 
-#===================================================================
-# For verification, print the environment variables that would be
-# needed for this to function correctly.
-#===================================================================
+# Determine the script's directory to make it portable
+# This removes the dependency on the $DOTFILES_DIR environment variable.
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-echo "Verify and proceed if the environment variables are correctly set."
+echo "Dotfiles directory detected at: $SCRIPT_DIR"
 echo "HOME is set to $HOME"
-echo "DOTFILES_DIR is set to $DOTFILES_DIR"
 printf "%s " "Press enter to continue"
-read ans
+read -r ans
 
-# DOFILES_DIR should be set in environment before is this to be run.
+# Finds a file and prints its path. Uses command substitution for return.
 find_file() {
     local search_path=$1
     local file_name=$2
     
-    # Check if search_path is a directory
     if [[ ! -d "$search_path" ]]; then
-        echo "Find_file::Error: $search_path is not a directory."
+        echo "Find_file::Error: $search_path is not a directory." >&2
         return 1
     fi
     
-    # Use find command to search for the file recursively
-    local result="$(find "$search_path" -type f -name "$file_name" -print -quit)"
+    local result
+    result=$(find "$search_path" -type f -name "$file_name" -print -quit)
     
-    # Check if file was found
     if [[ -n "$result" ]]; then
-        echo "File found at: $result"
+        echo "$result"
     else
-        echo "File not found."
+        echo "File '$file_name' not found in '$search_path'." >&2
+        return 1
     fi
-
-    eval "$3='$result'"
 }
 
+# Finds a folder and prints its path. Uses command substitution for return.
 find_folder() {
     local search_path=$1
     local folder_name=$2
-    # Use find command to search for the file recursively
-    local result="$(find "$search_path" -type d -name "$folder_name" -print -quit)"
-    
-    # Check if folder was found.
-    if [[ -d "$result" ]]; then
-        echo "Folder found at: $result"
-    else
-        echo "Folder not found."
-    fi
 
-    eval "$3='$result'"
+    if [[ ! -d "$search_path" ]]; then
+        echo "find_folder::Error: $search_path is not a directory." >&2
+        return 1
+    fi
+    
+    local result
+    result=$(find "$search_path" -type d -name "$folder_name" -print -quit)
+    
+    if [[ -d "$result" ]]; then
+        echo "$result"
+    else
+        echo "Folder '$folder_name' not found in '$search_path'." >&2
+        return 1
+    fi
 }
 
+# Links a file from the dotfiles repo to the HOME directory.
+link_file () {
+    local relative_path=$1
+    local source_filename
+    source_filename=$(basename "$relative_path")
+    local absolute_dest_path="$HOME/$relative_path"
+    local absolute_backup_path="$absolute_dest_path.local"
 
-link_files () {
+    # Ensure parent directory exists
+    mkdir -p "$(dirname "$absolute_dest_path")"
 
-    file_name=$1
-    search_folder_path=$2
-    absolute_file_name="$HOME/$file_name"
-    absolute_backup_file_name="$absolute_file_name.local"
-
-    if [[ -L $absolute_file_name ]]; then
-        echo "File $absolute_file_name is present and is linked."
+    if [[ -L "$absolute_dest_path" ]]; then
+        echo "Already linked: $absolute_dest_path"
         return 0
     fi
 
-    if [[ -f $absolute_backup_file_name ]]; then
-        echo "Backup file $absolute_backup_file_name is present."
-
-        diff -q $absolute_file_name $absolute_backup_file_name 
-        if [ $? -eq 0 ]; then
-            echo "Original and backup file $absolute_file_name matches, can safely backup this file."
-
-        else 
-            echo "Original and backup file $absolute_file_name don't match, exiting."
+    if [[ -f "$absolute_dest_path" ]]; then
+        echo "Backing up existing file: $absolute_dest_path -> $absolute_backup_path"
+        if ! mv "$absolute_dest_path" "$absolute_backup_path"; then
+            echo "Error: Failed to back up $absolute_dest_path. Aborting." >&2
             exit 1
         fi
     fi
 
-    # Only backup the original file if it exists.
-    if [[ -f $absolute_file_name ]]; then
-        echo "Copying current file to backup."
-        mv $absolute_file_name $absolute_backup_file_name
-
-        echo "Removed file $absolute_file_name."
+    local source_file_path
+    source_file_path=$(find_file "$SCRIPT_DIR" "$source_filename")
+    if [[ -z "$source_file_path" ]]; then
+        echo "Error: Source file '$source_filename' not found. Skipping." >&2
+        return
     fi
 
-    # Find the to be linked file.
-    link_file=''
-    find_file $DOTFILES_DIR $file_name link_file
-    echo "File to be linked is $link_file."
-
-    # In all cases, make the link.
-    ln -s $link_file $absolute_file_name
-    echo "File $absolute_file_name linked successfully."
+    echo "Linking: $source_file_path -> $absolute_dest_path"
+    ln -s "$source_file_path" "$absolute_dest_path"
 }
 
+# Links a folder from the dotfiles repo to the HOME directory.
 link_folder() {
-    destination_folder=$1
-    absolute_destination_folder="$HOME/$destination_folder"
-    source_folder_name=$2
+    local dest_path=$1
+    local source_folder_name=$2
+    local absolute_dest_path="$HOME/$dest_path"
 
-    if [ -L $absolute_destination_folder ]; then
-        echo "Folder $absolute_destination_folder is present and is linked."
+    # Ensure parent directory exists
+    mkdir -p "$(dirname "$absolute_dest_path")"
+
+    if [[ -L "$absolute_dest_path" ]]; then
+        echo "Already linked: $absolute_dest_path"
         return 0
     fi
 
-    link_folder=''
-    find_folder $DOTFILES_DIR $source_folder_name link_folder
-    echo "Folder to be linked is $link_folder."
+    if [[ -d "$absolute_dest_path" ]]; then
+        echo "Warning: Destination '$absolute_dest_path' exists and is not a symlink. Skipping." >&2
+        return
+    fi
 
-    ln -s $link_folder $absolute_destination_folder
-    echo "Folder $absolute_destination_folder linked successfully."
+    local source_folder_path
+    source_folder_path=$(find_folder "$SCRIPT_DIR" "$source_folder_name")
+    if [[ -z "$source_folder_path" ]]; then
+        echo "Error: Source folder '$source_folder_name' not found. Skipping." >&2
+        return
+    fi
+
+    echo "Linking folder: $source_folder_path -> $absolute_dest_path"
+    ln -s "$source_folder_path" "$absolute_dest_path"
 }
 
-link_files ".bashrc"
-link_files ".zshrc"
-link_files ".tmux.conf"
-link_files ".vimrc"
-link_folder ".config/nvim" "nvim"
-link_folder ".config/kitty" "kitty"
+# --- Declarative linking ---
+# Add files and folders to be linked to these arrays.
 
-# VS Code paths
-# Windows %APPDATA%\Code\User\settings.json
-# macOS $HOME/Library/Application\ Support/Code/User/settings.json
-# Linux $HOME/.config/Code/User/settings.json
+# Files to link directly into $HOME or specified path
+# Format: "path/in/home/.filename"
+files_to_link=(
+    ".bashrc"
+    ".zshrc"
+    ".tmux.conf"
+    ".vimrc"
+    ".config/Code/User/settings.json"
+    ".config/Code/User/keybindings.json"
+)
 
-# TODO: Make below work later.
-#link_files ".config/Code/User/settings.json" "Code/User/settings.json"
+# Folders to link
+# Format: "path/in/home/.config/folder_name" "source_folder_name_in_repo"
+declare -A folders_to_link=(
+    [".config/nvim"]="nvim"
+    [".config/kitty"]="kitty"
+)
+
+echo "--- Starting file linking process ---"
+for file in "${files_to_link[@]}"; do
+    link_file "$file"
+done
+
+echo "--- Starting folder linking process ---"
+for dest in "${!folders_to_link[@]}"; do
+    link_folder "$dest" "${folders_to_link[$dest]}"
+done
+
+echo "--- Linking complete ---"
