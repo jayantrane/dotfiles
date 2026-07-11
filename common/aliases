@@ -19,7 +19,7 @@ alias ppid='ps -o ppid= -p '
 alias gs='git status'
 alias gl='git log'
 alias gln='git --no-pager log -n '
-alias co='git checkout'
+alias gco='git checkout'
 alias ga='git add'
 alias gaa='git add -A'
 alias gau='git add -u'
@@ -34,4 +34,12 @@ alias greb='git rebase -i'
 
 # Github
 alias gp='git pull'
-alias gpu='git push'
+
+# Find and edit a file with fzf
+fe() {
+  local file
+  file=$(find . -type f | fzf --height 40%)
+  if [[ -n $file ]]; then
+    nvim "$file"
+  fi
+}
