@@ -124,6 +124,7 @@ link_folder() {
 files_to_link=(
     ".bashrc"
     ".zshrc"
+    ".p10k.zsh"
     ".tmux.conf"
     ".vimrc"
     ".config/Code/User/settings.json"
