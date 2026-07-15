@@ -55,3 +55,6 @@ alias gll='pretty_git_log'
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+# fzf history search
+source <(fzf --zsh)
