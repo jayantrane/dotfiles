@@ -1,12 +1,67 @@
 # dotfiles
 Jayant's configs for environment setup.
 
-## For Tmux, install the TPM as per follows:
+## Tmux
+
+The tmux config lives in `tmux/.tmux.conf`. The prefix is remapped to `Ctrl-s` (from the default `Ctrl-b`), so every shortcut in the tables below is pressed as `prefix` then the key (for example, reload is `Ctrl-s` then `r`).
+
+### Install
+
+Install the Tmux Plugin Manager (TPM), then reload the config so it can fetch the plugins:
+
+```
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source-file ~/.tmux.conf
+```
 
-### And reload config or run following
-run '~/.tmux/plugins/tpm/tpm'
+Inside a tmux session press `prefix + I` to install the plugins listed in the config, and `prefix + U` to update them later.
+
+### Keybindings
+
+| Key (after prefix `C-s`) | Action |
+| ------------------------ | ------ |
+| `r`                      | Reload `~/.tmux.conf`. |
+| `h` / `j` / `k` / `l`    | Move to the pane on the left / below / above / right. |
+| `c`                      | New window, opened in the current pane's directory. |
+| `"`                      | Split top/bottom, in the current pane's directory. |
+| `%`                      | Split left/right, in the current pane's directory. |
+| `C-o`                    | Save the current pane's full scrollback to `~/tmp/tmux.output`. |
+| `P`                      | Prompt "plugin:" and list the installed TPM plugins. |
+| `C-f`                    | Launch the tmux-fzf fuzzy finder (set via `@fzf-launch`). |
+| `Tab`                    | Extrakto: fuzzy-extract text, paths, and git hashes from the pane (plugin default). |
+| `I` / `U`                | TPM: install / update plugins (plugin defaults). |
+
+Copy mode (vi keys are enabled):
+
+| Key (in copy mode) | Action |
+| ------------------ | ------ |
+| `y`                | Copy the selection to the system clipboard via `xclip`. |
+
+### Behavior and settings
+
+| Setting | Value / effect |
+| ------- | -------------- |
+| Prefix | `Ctrl-s` (default `Ctrl-b` is unbound). |
+| Scrollback history | 100,000 lines per pane. |
+| Mouse | On: click to select panes/windows, drag borders to resize, scroll to page back. |
+| System clipboard | On (`set-clipboard`), so copied text reaches the OS clipboard. |
+| Window/pane numbering | Starts at 1 (not 0). |
+| Window names | Fixed: `automatic-rename` and `allow-rename` are off, so manually set names persist. |
+| New windows/splits | Inherit the current pane's directory rather than the session start dir. |
+| Default shell | `/bin/zsh`. |
+| Terminal | `screen-256color`; `aggressive-resize` on. |
+| Copy mode | vi keybindings. |
+| Status bar | At the bottom; the right side shows the current directory, the session name, and the date/time with timezone. |
+
+### Plugins (managed by TPM)
+
+| Plugin | Purpose |
+| ------ | ------- |
+| [tpm](https://github.com/tmux-plugins/tpm) | Plugin manager. |
+| [extrakto](https://github.com/laktak/extrakto) | Fuzzy-extract text, paths, URLs, and git hashes from pane output. |
+| [tmux-fzf](https://github.com/sainnhe/tmux-fzf) | fzf-based fuzzy search over sessions, windows, panes, and commands. |
+| [catppuccin/tmux](https://github.com/catppuccin/tmux) | Catppuccin theme (v2.x): slanted window tabs labelled by window name, plus the custom status line described above. |
 
 ## Zsh
 
