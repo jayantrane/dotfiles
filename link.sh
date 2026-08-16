@@ -127,6 +127,7 @@ files_to_link=(
     ".p10k.zsh"
     ".tmux.conf"
     ".vimrc"
+    ".paths.env"
     ".config/Code/User/settings.json"
     ".config/Code/User/keybindings.json"
 )

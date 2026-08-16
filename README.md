@@ -1,6 +1,23 @@
 # dotfiles
 Jayant's configs for environment setup.
 
+## Shared + Local Path Environment
+
+Both bash and zsh source `common/env`, which now loads path variables from:
+
+1. `~/.paths.env` (committed defaults, symlinked by `link.sh`)
+2. `~/.paths.local.env` (host-local overrides, not tracked)
+
+### Default variables in repo
+
+- `HOME`
+- `DOTFILES_DIR`
+- `PROJECTS_DIR`
+
+### Host-specific override setup
+
+Create and edit `~/.paths.local.env` with machine-specific values.
+
 ## Tmux
 
 The tmux config lives in `tmux/.tmux.conf`. The prefix is remapped to `Ctrl-s` (from the default `Ctrl-b`), so every shortcut in the tables below is pressed as `prefix` then the key (for example, reload is `Ctrl-s` then `r`).
@@ -85,4 +102,3 @@ This configuration uses `zsh` as the default shell, enhanced with several plugin
 | `Ctrl + R`      | Invoke `fzf` to fuzzy-search through command history.   |
 | `Ctrl + T`      | Invoke `fzf` to fuzzy-search for files and directories. |
 | `Alt + C`       | Invoke `fzf` to fuzzy-search for a directory and `cd` into it. |
-

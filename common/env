@@ -1,4 +1,15 @@
-export DOTFILES_DIR=~/dotfiles
+# Load shared paths from home-linked files.
+if [[ -f "$HOME/.paths.env" ]]; then
+	source "$HOME/.paths.env"
+fi
+
+if [[ -f "$HOME/.paths.local.env" ]]; then
+	source "$HOME/.paths.local.env"
+fi
+
+export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+export PROJECTS_DIR="${PROJECTS_DIR:-$HOME/projects}"
+
 PACKAGE_MANAGER_PREFIX=/usr/share/
 ANTIGEN_DIR=$PACKAGE_MANAGER_PREFIX/zsh-antigen/
 export LANG="en_IN.utf8"
